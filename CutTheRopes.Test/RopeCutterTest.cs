@@ -1,3 +1,5 @@
+using CutTheRopes.BL;
+
 namespace CutTheRopes.Test
 {
     public class RopeCutterTest
