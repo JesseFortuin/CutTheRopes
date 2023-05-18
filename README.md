@@ -18,3 +18,119 @@ length of each rope.
 
 [output] an integer array
 number of ropes before each step.
+
+------------------------------------------------
+solutions
+
+public int[] CutTheRopes(int[] a){
+          var list=new List<int>();
+          while(a.Sum()>0)         
+          {
+            list.Add(a.Count(x=>x>0));
+            var min =a.Where(x=>x>0).Min();            
+            a=a.Select(x=>x==0?0:x-min).ToArray();
+          }
+          return list.ToArray();
+
+--------------
+
+int length = a.Length;
+            return new[] { length }
+                .Concat(a
+                    .GroupBy(x => x)
+                    .OrderBy(x => x.Key)
+                    .Select(x => length -= x.Count())
+                    .SkipLast(1)
+                ).ToArray();
+
+--------------
+
+public int[] CutTheRopes(int[] a)
+        {
+            List<int> result = new List<int>();
+
+            int numRopes = a.Length;
+
+            while (numRopes > 0)
+            {
+                result.Add(numRopes);
+
+                int minRopeLength = GetMinRopeLength(a);
+
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (a[i] > 0)
+                    {
+                        a[i] -= minRopeLength;
+                        if (a[i] == 0)
+                        {
+                            numRopes--;
+                        }
+                    }
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        public static int GetMinRopeLength(int[] ropes)
+        {
+            int minRopeLength = int.MaxValue;
+
+            for (int i = 0; i < ropes.Length; i++)
+            {
+                if (ropes[i] > 0 && ropes[i] < minRopeLength)
+                {
+                    minRopeLength = ropes[i];
+                }
+            }
+            return minRopeLength;
+        }
+
+---------------------
+
+List<int> sourceArray = new List<int>(a);
+            List<int> result = new List<int>();
+
+            while (sourceArray.Count != 0)
+            {
+                result.Add(sourceArray.Count());
+                int min = sourceArray.Min();
+
+                sourceArray = sourceArray.Select(x => x - min).Where(f => f > 0).ToList();
+            }
+
+            return result.ToArray();
+
+
+
+
+
+
+
+
+-
+
+List<int> res = new List<int>() { a.Length };
+          Array.Sort(a);
+          while (true)
+          {
+            a = a.Select(x => x - a[0]).Where(x => x > 0).ToArray();
+            if (a.Count() > 0)
+              res.Add(a.Length);
+            else
+              return res.ToArray();
+
+-
+
+
+
+
+
+
+
+
+
+
+
+

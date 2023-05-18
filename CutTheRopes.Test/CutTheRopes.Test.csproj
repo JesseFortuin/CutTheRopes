@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CutTheRopes.BL\CutTheRopes.BL.csproj" />
+  </ItemGroup>
+
 </Project>
